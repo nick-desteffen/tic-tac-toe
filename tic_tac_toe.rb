@@ -6,11 +6,11 @@ class TicTacToe
   attr_reader :player_piece, :computer_piece, :board
   attr_writer :player_piece, :computer_piece, :board
 
-	def initialize
+  def initialize
     @board = [[nil, nil, nil],
               [nil, nil, nil],
               [nil, nil, nil]]
-	end
+  end
 
   def start
     puts "Do you want to be x or o?"
@@ -37,8 +37,8 @@ class TicTacToe
     @player_piece != nil && @computer_piece != nil
   end
 
-	def play
-		unless game_over?
+  def play
+    unless game_over?
       display_board
       row, column = gather_input
       if valid_move?(row, column)
@@ -46,20 +46,20 @@ class TicTacToe
         computer_turn unless board_full?
       end
       play
-		else
+    else
       puts "*********"
       puts "*********"
       display_board
       puts "Game over!"
       return
-		end
-	end
+    end
+  end
 
   def gather_input
-      puts "Please enter row, column (exp. 1,2):"
-		  user_value = gets
-      row, column = parse_input(user_value)
-      [row, column]
+    puts "Please enter row, column (exp. 1,2):"
+    user_value = gets
+    row, column = parse_input(user_value)
+    [row, column]
   end
 
   def valid_move?(row, column)
@@ -101,13 +101,13 @@ class TicTacToe
     return @board[row][column]
   end
 
-	def game_over?
-		return true if row_match?
+  def game_over?
+    return true if row_match?
     return true if column_match?
     return true if diagnol_match?
     return true if board_full?
     return false
-	end
+  end
 
   def update_board(row, column, piece)
     board[row][column] = piece
