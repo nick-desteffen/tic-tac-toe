@@ -18,7 +18,7 @@ describe TicTacToe do
     it "should set the player piece to o and the computer to x if the player chooses o" do
       @ttt.initalize_pieces("o")
       @ttt.player_piece.should == "o"
-      @ttt.computer_piece.should == "x"      
+      @ttt.computer_piece.should == "x"
     end
     it "should be case insensitive" do
       @ttt.initalize_pieces("O")
@@ -34,7 +34,7 @@ describe TicTacToe do
     end
     it "should be false if one piece is not valid" do
       @ttt.player_piece = "B"
-      @ttt.valid_pieces?.should == false      
+      @ttt.valid_pieces?.should == false
     end
   end
 
@@ -58,21 +58,21 @@ describe TicTacToe do
   end
 
   describe "column_match?" do
-    it "should be true if all the values in the first column are the same" do 
+    it "should be true if all the values in the first column are the same" do
       @ttt.board = [['x', nil, nil], ['x', nil, nil], ['x', nil, nil]]
       @ttt.column_match?.should == true
     end
-    it "should be true if all the values in the second column are the same" do 
+    it "should be true if all the values in the second column are the same" do
       @ttt.board = [[nil, 'x', nil], [nil, 'x', nil], [nil, 'x', nil]]
       @ttt.column_match?.should == true
     end
-    it "should be true if all the values in the third column are the same" do 
+    it "should be true if all the values in the third column are the same" do
       @ttt.board = [[nil, nil, 'x'], [nil, nil, 'x'], [nil, nil, 'x']]
       @ttt.column_match?.should == true
     end
-    it "should be false if none of the columns are the same" do 
+    it "should be false if none of the columns are the same" do
       @ttt.board = [[nil, nil, 'x'], [nil, nil, 'x'], [nil, nil, 'o']]
-      @ttt.column_match?.should == false    
+      @ttt.column_match?.should == false
     end
   end
 
@@ -85,7 +85,7 @@ describe TicTacToe do
       @ttt.board = [[nil, nil, 'x'],[nil, 'x', nil],['x', nil, nil]]
       @ttt.diagnol_match?.should == true
     end
-    it "should be false if there isn't a diagnol match" do 
+    it "should be false if there isn't a diagnol match" do
       @ttt.board = [[nil, nil, 'x'],[nil, nil, nil],['x', nil, nil]]
       @ttt.diagnol_match?.should == false
     end
@@ -102,7 +102,7 @@ describe TicTacToe do
       @ttt.board[0][0] = nil
       @ttt.marker(0,0).should == "-"
     end
-    it "should return the value on the spot if it is not nil" do 
+    it "should return the value on the spot if it is not nil" do
       @ttt.board[0][0] = 'x'
       @ttt.marker(0,0).should == 'x'
     end
@@ -139,37 +139,37 @@ describe TicTacToe do
   describe "computer_fill_row_move" do
     it "should return the index to put a piece if the user is going to fill up a row" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
 
-      @ttt.board = [['x', 'x', nil], 
+      @ttt.board = [['x', 'x', nil],
                     ['o', nil, nil],
                     [nil, nil, nil]]
       @ttt.computer_fill_row_move(@ttt.player_piece, @ttt.computer_piece).should == [0, 2]
 
-      @ttt.board = [[nil, 'x', 'x'], 
+      @ttt.board = [[nil, 'x', 'x'],
                     ['o', nil, nil],
                     [nil, nil, nil]]
       @ttt.computer_fill_row_move(@ttt.player_piece, @ttt.computer_piece).should == [0, 0]
 
-      @ttt.board = [[nil, nil, nil], 
+      @ttt.board = [[nil, nil, nil],
                     ['o', nil, nil],
                     ['x', nil, 'x']]
       @ttt.computer_fill_row_move(@ttt.player_piece, @ttt.computer_piece).should == [2, 1]
     end
     it "should return nil, nil if no rows need to be blocked" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
-      @ttt.board = [[nil, nil, nil], 
+      @ttt.computer_piece = 'o'
+      @ttt.board = [[nil, nil, nil],
                     ['o', 'x', nil],
                     ['x', nil, nil]]
-      @ttt.computer_fill_row_move(@ttt.computer_piece, @ttt.player_piece).should == [nil, nil]      
+      @ttt.computer_fill_row_move(@ttt.computer_piece, @ttt.player_piece).should == [nil, nil]
     end
   end
 
   describe "computer_fill_column_move" do
     it "should return the index to put a piece if the user is going to fill up a column" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
       @ttt.board = [['x', nil, nil],
                 ['x', 'o', nil],
                 [nil, nil, nil]]
@@ -188,7 +188,7 @@ describe TicTacToe do
     end
     it "should return nil, nil if no columns need to be blocked" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
       @ttt.board = [['x', nil, 'x'],
                     [nil, 'o', nil],
                     [nil, nil, nil]]
@@ -200,7 +200,7 @@ describe TicTacToe do
 
     it "should return the index to put a piece if the user is going to fill up a diagnol row" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
       @ttt.board = [['x', nil, nil],
                     ['o', 'x', nil],
                     [nil, nil, nil]]
@@ -215,7 +215,7 @@ describe TicTacToe do
 
     it "should return nil, nil if the diagnol rows don't need to be blocked" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
       @ttt.board = [[nil, 'x', nil],
                     ['o', 'x', nil],
                     [nil, nil, nil]]
@@ -242,7 +242,7 @@ describe TicTacToe do
   describe "computer_choice" do
     it "should go for the win if it can match a row" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
 
       @ttt.board = [[nil, 'o', 'o'],
                     ['x', nil, nil],
@@ -257,7 +257,7 @@ describe TicTacToe do
 
     it "should go for the win if it can match on a column" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
 
       @ttt.board = [[nil, 'x', 'o'],
                     ['x', nil, nil],
@@ -267,12 +267,12 @@ describe TicTacToe do
       @ttt.board = [[nil, 'x', 'o'],
                     ['x', nil, 'o'],
                     ['x', nil, nil]]
-      @ttt.computer_choice.should == [2,2]    
+      @ttt.computer_choice.should == [2,2]
     end
 
     it "should go for the win if it can match on a diagnol" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
 
       @ttt.board = [['o', 'x', nil],
                     [nil, nil, nil],
@@ -282,12 +282,12 @@ describe TicTacToe do
       @ttt.board = [['x', 'x', 'o'],
                     ['x', 'o', nil],
                     [nil, nil, nil]]
-      @ttt.computer_choice.should == [2,0]    
+      @ttt.computer_choice.should == [2,0]
     end
 
     it "should block the player if they are one away from a row match" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
 
       @ttt.board = [[nil, 'x', 'x'],
                     ['o', nil, nil],
@@ -322,12 +322,12 @@ describe TicTacToe do
 
     it "should block the player if they are one away from a column match" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
 
       @ttt.board = [['x', 'o', nil],
                     [nil, nil, nil],
                     ['x', nil, nil]]
-      @ttt.computer_choice.should == [1,0]    
+      @ttt.computer_choice.should == [1,0]
 
       @ttt.board = [['x', 'o', nil],
                     ['x', nil, nil],
@@ -337,17 +337,17 @@ describe TicTacToe do
       @ttt.board = [['o', nil, nil],
                     [nil, 'x', nil],
                     [nil, 'x', nil]]
-      @ttt.computer_choice.should == [0,1]    
+      @ttt.computer_choice.should == [0,1]
 
       @ttt.board = [['o', 'x', nil],
                     [nil, nil, nil],
                     [nil, 'x', nil]]
-      @ttt.computer_choice.should == [1,1]    
+      @ttt.computer_choice.should == [1,1]
 
       @ttt.board = [['o', nil, 'x'],
                     [nil, nil, nil],
                     [nil, nil, 'x']]
-      @ttt.computer_choice.should == [1,2]    
+      @ttt.computer_choice.should == [1,2]
 
       @ttt.board = [['o', nil, 'x'],
                     [nil, nil, 'x'],
@@ -357,17 +357,17 @@ describe TicTacToe do
 
     it "should block the player if they are one away from a diagnol match" do
       @ttt.player_piece = 'x'
-      @ttt.computer_piece = 'o'  
+      @ttt.computer_piece = 'o'
 
       @ttt.board = [[nil, 'o', nil],
                     [nil, 'x', nil],
                     [nil, nil, 'x']]
-      @ttt.computer_choice.should == [0,0]          
+      @ttt.computer_choice.should == [0,0]
 
       @ttt.board = [['x', 'o', nil],
                     [nil, nil, nil],
                     [nil, nil, 'x']]
-      @ttt.computer_choice.should == [1,1]          
+      @ttt.computer_choice.should == [1,1]
 
       @ttt.board = [['x', 'o', nil],
                     [nil, 'x', nil],
@@ -377,7 +377,7 @@ describe TicTacToe do
       @ttt.board = [[nil, 'o', 'x'],
                     [nil, 'x', nil],
                     [nil, nil, nil]]
-      @ttt.computer_choice.should == [2,0]          
+      @ttt.computer_choice.should == [2,0]
     end
   end
 

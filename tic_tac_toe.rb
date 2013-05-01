@@ -39,7 +39,7 @@ class TicTacToe
 
 	def play
 		unless game_over?
-      display_board      
+      display_board
       row, column = gather_input
       if valid_move?(row, column)
         update_board(row, column, @player_piece)
@@ -48,8 +48,8 @@ class TicTacToe
       play
 		else
       puts "*********"
-      puts "*********"		  
-      display_board      
+      puts "*********"
+      display_board
       puts "Game over!"
       return
 		end
@@ -140,7 +140,7 @@ class TicTacToe
         return @board.index(row), row.index(nil)
       end
     end
-    return nil, nil  
+    return nil, nil
   end
 
   def computer_fill_column_move(inlcuded_piece, not_included_piece)
@@ -151,7 +151,7 @@ class TicTacToe
       end
       if column_array.include?(inlcuded_piece) && !column_array.include?(not_included_piece) && column_array.compact.size == 2
         return column_array.index(nil), column
-      end        
+      end
     end
     return nil, nil
   end
@@ -163,30 +163,30 @@ class TicTacToe
     diagnol1 << @board[0][0]
     diagnol1 << @board[1][1]
     diagnol1 << @board[2][2]
-    
+
     diagnol2 << @board[2][0]
     diagnol2 << @board[1][1]
     diagnol2 << @board[0][2]
 
     if diagnol1.include?(included_piece) && !diagnol1.include?(not_included_piece) && diagnol1.compact.size == 2
       return diagnol1.index(nil), diagnol1.index(nil)
-    end        
+    end
 
     if diagnol2.include?(included_piece) && !diagnol2.include?(not_included_piece) && diagnol2.compact.size == 2
       case diagnol2.index(nil)
         when 2 : row = 0
         when 1 : row = 1
         when 0 : row = 2
-      end  
+      end
       return row, diagnol2.index(nil)
-    end        
+    end
     return nil, nil
   end
 
   def computer_priortize_move
     corners = [[0,0],[0,2],[2,0],[2,2]]
     sides = [[1,0],[0,1],[1,2],[2,1]]
-    
+
     corner_populated = false
     middle_populated = false
     side_populated = false
@@ -199,14 +199,14 @@ class TicTacToe
         break
       end
     end
-    
+
     sides.each do |side|
       row = side[0]
       column = side[1]
       if @player_piece == @board[row][column]
         side_populated = true
         break
-      end      
+      end
     end
 
     if @board[1][1] == @player_piece
@@ -240,7 +240,7 @@ class TicTacToe
   def row_match?
     @board.each do |row|
       return true if row == [X, X, X] || row == [O, O, O]
-    end 
+    end
     return false
   end
 
