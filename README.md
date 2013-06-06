@@ -1,6 +1,6 @@
 Tic-Tac-Toe
 ===========
-**Tic-Tac-Toe Excercise**
+**Tic-Tac-Toe Exercise**
 
 
 **This program should:**  
